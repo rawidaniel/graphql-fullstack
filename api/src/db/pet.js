@@ -3,7 +3,11 @@ const nanoid = require("nanoid");
 const createPetModel = (db) => {
   return {
     findMany(filter) {
-      return db.get("pet").filter(filter).value();
+      return db
+        .get("pet")
+        .filter(filter)
+        .orderBy(["createdAt"], ["desc"])
+        .value();
     },
 
     findOne(filter) {
